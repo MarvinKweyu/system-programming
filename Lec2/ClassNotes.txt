@@ -1,0 +1,5 @@
+A successful call to read() returns the number of  bytes
+actually read or zero if end of file is encountered.
+
+
+0706352266 -Joe

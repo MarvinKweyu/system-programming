@@ -25,14 +25,27 @@ Types of modes:(permissions)
  ## `creat()`
  - its' a system call that opens/creates a new file with a given path file or if the file already exits opens the file and truncates it's length to zero.
  - As an example:
-   ` create('test1.txt',O_RDONLY|O_CREAT) `
+   ` creat('test1.txt',O_RDONLY|O_CREAT) `
+ ####Syntax
+   `int creat(char *filename,mode_t mode);`
 
  ## `open()`
  - as it's function result `create` returns a file-descriptor that can be used in subsequent system calls.
-   ` create(filePath) == open(filePath, O_RDONLY| O_CREAT| TRUNC , S_IRWXU)`
+   ` creat(filePath) == open(filePath, O_RDONLY| O_CREAT| TRUNC , S_IRWXU)`
+
+ #### Syntax of open()
+  `int open (const char* Path, int flags [, int mode ]);`
 
  ## `read()`
  - the read sys call reads data from a open file refereed to as by the file descriptor, `fd`
+ #### Syntax of read()
+ `size_t read(int fd,void* buf,size_t cnt);`
+Above,fd is the file descriptor,cnt the size to read from the file while buf the intermediate memory space to read from.
+
+ #### Syntax of read
+ `ssize_t read(fd, void* buffer, size_t count)`
+
+ A successful to read returns the number of bytes actually read or zero if EOF is encountered
 
  ## 'write()'
  - Writes to the file.
@@ -43,14 +56,25 @@ Types of modes:(permissions)
  - Above,1 would refer to the file descriptor you want to write to ,p (char) what you want to write and 2 the number of bytes
   to write
 
-  #### Syntax
-  `ssize_t read(fd, void* buffer, size_t count)`
+ #### Syntax for write()
 
-  A successful to read returns the number of bytes actually read or zero if EOF is encountered
+ `#include<fcntl.h>
+  size_t write(int fd,void*buf,size_t cnt);
+  `
+-Note that the Syntax is similar to read().
 
-#### Some other system calls would be:
-close() -closes a file after reading or writing
-unlink() -deletes a file
+
+## Some other system calls would be:
+##close()
+-closes a file after reading or writing
+####Syntax
+`int close(int fd);`
+
+####unlink()
+-deletes a file
+####Syntax
+`unlink( <file_name_string> );`
+
 
 system calls utilize #include <fcntl.h> library without which they would not work.
 
