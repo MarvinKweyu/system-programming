@@ -58,21 +58,23 @@ Above,fd is the file descriptor,cnt the size to read from the file while buf the
 
  #### Syntax for write()
 
- `#include<fcntl.h>
+ ```
+ #include<fcntl.h>
+
   size_t write(int fd,void*buf,size_t cnt);
-  `
--Note that the Syntax is similar to read().
+  ```
+Note that the Syntax is similar to read().
 
 
 ## Some other system calls would be:
-##close()
--closes a file after reading or writing
-####Syntax
+## close()
+- closes a file after reading or writing
+#### Syntax
 `int close(int fd);`
 
-####unlink()
--deletes a file
-####Syntax
+#### unlink()
+- deletes a file
+#### Syntax
 `unlink( <file_name_string> );`
 
 
@@ -91,6 +93,6 @@ system calls utilize #include <fcntl.h> library without which they would not wor
  ```
  offset arg ~ Specifies a value in byte
  whence arg ~ Indicate the best point from where the offset is to be interpreted and is one of the following values,
-    - `SEEK_SET` ~ The file offset is set offset byte to the beginning of the file
-    - `SEEK_CUR` ~ The file offset is adjusted by offset bytes relative to the current file offset
-    - `SEEK_END` ~ The file offset is set to file size plus offset, in other words it's interpreted with respect to the next byte after the last byte of the file
+  - `SEEK_SET` ~ The file offset is set offset byte to the beginning of the file
+  - `SEEK_CUR` ~ The file offset is adjusted by offset bytes relative to the current file offset
+  - `SEEK_END` ~ The file offset is set to file size plus offset, in other words it's interpreted with respect to the next byte after the last byte of the file
