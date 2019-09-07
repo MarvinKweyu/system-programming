@@ -1,36 +1,36 @@
-#PROCESSES
+# PROCESSES
 A process is an instance of an executing program.
 A program is a file containing a range of information describing how to construct a process at run-time
 
 This information Includes:
 
-####1.Binary format identification
+#### 1.Binary format identification
 Each program file includes meta-information describing format of executable file.
 This enables the kernel to interpret the remaining information in the file.
 In Unix,the executable file is in the format a.out
 
-####2.Machine language instruction
+#### 2.Machine language instruction
 this encodes the algorithm of the program
 
-####3.Program entry point address
+#### 3.Program entry point address
 This identifies the location of the instruction at which execution should start.
 
-####4.Data
+#### 4.Data
 The program file contains values used to initialize variables and literal constants used by the program.
 
-####5.Symbol and relocation symbols
+#### 5.Symbol and relocation symbols
 These describe the location and names of functions and variables within the program.
 These tables are used for a variety of purposes including debugging and run-time Symbol resolution(dynamic linking)
 Note on dynamic and static.
 
-####6.Shared library and dynamic linking information
+#### 6.Shared library and dynamic linking information
 The program file includes field listings,the shared libraries the program needs to use at runtime and pathname of dynamic linker
 it should use to load these libraries.
 
-####7.Other information
+#### 7.Other information
 the program file has various other information describing how to construct a process.
 
-##PROCESS ID AND PARENT PROCESS ID
+## PROCESS ID AND PARENT PROCESS ID
 open(pathname,flags,modes)
 
 Obtaining process id sample
@@ -49,18 +49,19 @@ Each process has a parent i.e the process that created it.
 A process can find the process id of its parent using:getppid() system call.
 
 Syntax is as below:
-`#include<unistd.h>
+```
+#include<unistd.h>
  Pid_t getppid()
-`
 
+```
 In effect,the process id attribute of each process represents a tree like relationship of all processes in the system.
 The parent of each process has its own parent and so on till process 1 i.e init(the ancestor of all processes)
 - If a child process becomes orphaned,the child is adopted by init process and subsequent calls to getppid() in the child return 1
 
-##MEMORY LAYOUT OF A PROCESS
+## MEMORY LAYOUT OF A PROCESS
 The memory allocated to each process is composed of a number of parts named segments.
 
-####1.Text segment
+#### 1.Text segment
 Contains machine language instruction of the program run by the process.
 Has converted machine instruction of  the program
 Nota:Compiling converts to machine language.
@@ -68,7 +69,7 @@ The text segment is made read only so that a process doesn't accidentally modify
 Since many process may be running the same program,the text segment is shareable so that a single copy of the program code
 can be mapped to virtual address space of all processes.
 
-####2.Initialized data segments
+#### 2.Initialized data segments
 Has global and static variables `explicitly Initialized.`
 Values of these variables are read from executable file when the program is loaded to memory.
 
@@ -79,7 +80,7 @@ Explicit initialization is as below:
 int y = 5;
 In case of declaration outside the main,explicitly state static variable_name.
 
-####3.Uninitialized data segment.
+#### 3.Uninitialized data segment.
 Contains global and static variables `not explicitly Initialized`.
 For instance:
 int y;
@@ -93,18 +94,18 @@ is that when a program is stored on disk,it is not necessary to allocate space f
 Instead the executable records the location and size needed for the uninitialized data segment.This space is allocated by program
 loader at runtime.
 
-####4 Stack
+#### 4. Stack
 The stack is a dynamically growing and shrinking segment stack frames.
 One stack frame is allocated for each currently called function.
 A frame stores the functions local variables,arguments and return values.
 
-####5.Heap
+#### 5.Heap
 An area from which memory can be dynamically allocated at runtime.
 The top end of the heap is called the program break.
 
 Example:
-
-`#include <stdio.h>
+```
+#include <stdio.h>
 
 // global variable..keeps memory sector locked
 int  x;    //Uninitialized data segment
@@ -123,19 +124,20 @@ void setNumbers(int k,int z) {   //k and z are stack
     return y;//stack
   }
 }
-`
 
-#VIRTUAL MEMORY MANAGEMENT
+```
+
+# VIRTUAL MEMORY MANAGEMENT
 Like most modern kernels,linux employs virtual memory management to make efficient use of  both processor and RAM,
 via exploiting a property typical of most program locality of reference.
 Most programs demonstrate two kinds of locality:
 
-####1.Spartial Locality
+#### 1. Spartial Locality
 The tendency of a program to reference memory addresses near those that were recently accessed.(Because
 of sequential processing of instructions and sequential processing of data structures)
 Example of sequential is array int x[]={1,2,3,4,5}
 
-####2.Temporal locality
+#### 2.Temporal locality
 Tendency of a program to access same memory addresses in the near future that it accessed in the recent past.
 demonstrated in a loop within a loop
 0 0
@@ -149,7 +151,7 @@ A virtual memory scheme splits memory used by each program to small fixed size u
 Correspondingly,RAM is divided to a series of page frames of the same size.
 At any one time,only some of the pages of a program need to be resident in a physical memory page frame.
 
-Nota : Creating virtual memory,where it is ....
+**Nota** : Creating virtual memory,where it is ....
 
 The pages form the resident set.
 Copies of the unused pages of the program are maintained in the swap area(a reserved area of the disk space to

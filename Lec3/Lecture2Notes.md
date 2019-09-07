@@ -11,6 +11,7 @@ or written.
 
 Thus,successive read() and write() calls progress sequentially via the file.
 #### Syntax as below:
+
 ```
 offset-t lseek(int fd,off_t offset, int whence);
 
@@ -18,11 +19,14 @@ offset-t lseek(int fd,off_t offset, int whence);
 the offset argument specifies a value in bytes.
 the whence argument indicates the best point from which offset is to be interpreted,
 and is one of the below values:
-SEEK_SET
+
+`SEEK_SET`
 The file offset is set offset bytes from the beginning of the file
-SEEK_CUR
+
+`SEEK_CUR`
 The file offset is adjusted by offset bytes relative to the current file offset
-SEEK_END
+
+`SEEK_END`
 The file offset is set to the size of the file plus offset.
 In other words,offset is interpreted with respect to the next byte after the last byte of the file
 

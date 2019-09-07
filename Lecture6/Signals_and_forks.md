@@ -1,4 +1,4 @@
-#Signals
+# Signals
 
 A signal is a notification to a process that an event has occurred.
 They are sometimes referred to as software interrupts.
@@ -8,10 +8,10 @@ One process can ,if it has suitable permissions send a signal to another process
 It is also possible for a process to send a signal to itself.
 However,the usual source of many signals sent to a process is the kernel.
 
-####Causes of signals
+### Causes of signals
 Among the types of events that cause the kernel to generate a signal for a process are:
 
-a)The user typed one of the terminal special characters that generate signals.
+a) The user typed one of the terminal special characters that generate signals.
 These characters include the interrupt character(ctrl+C) and the suspend character(ctrl+Z)
 
 b)A software event occurred.

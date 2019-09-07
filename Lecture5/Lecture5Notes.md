@@ -1,19 +1,20 @@
-##1.Maximum virtual address space
+## 1.Maximum virtual address space
 
 Size of a program address is determined by Maximum size of virtual address space.
 Number of bits in a virtual address is the log to base 2 of this value.
 
-##2 Maximum physical address spaces
+## 2. Maximum physical address spaces
 Amount of free memory the system can support determines the number of bits needed to address the physical memory.
 The size of physical address is log to base 2 of this value.
 Hence 16MB = 16 000 000 bytes = 4000 bytes of physical memory
 Maximum physical space of 8MB,space of address needed
 
-##3.Size of a page
+## 3. Size of a page
 The size of virtual memory page and a physical memory frame.
 It is a power of 2.
 
 `Exercise`
+
 Suppose our pages are 4096bytes long and our machine uses 32 bit addresses.How many pages will we fit in that machine.
 
 bytes = (2**32) //since machine is 32 bit
@@ -45,7 +46,7 @@ This can happen in the following cases:
 a).As the stack grows downwards beyond limits previously reached.
 b) When memory is allocated or de-allocated on the heap by raising the program break using brk() or sbrk()
 
-####Reasons for separating physical from virtual MEMORY
+#### Reasons for separating physical from virtual MEMORY
 Virtual memory management separates the virtual address space of a process from physical address space of RAM.
 This provides many advantages:
 
@@ -53,7 +54,7 @@ i) Processes are isolated from each other and the kernel hence one process can't
 ii)
 
 
-#COMMAND LINE ARGUMENTS(argc(argument count),argv(command line vector))
+## COMMAND LINE ARGUMENTS(argc(argument count),argv(command line vector))
 
 Every C program has a function main() which is the point where execution of the program starts.
 when executed,the command line arguments(the separate words passed by the shell) are made available via two arguments to function
